@@ -2,8 +2,9 @@
 
 void main() 
 {
+	std::cout << "123123123" << std::endl;
 	int a;
 	std::cin >> a;
 	foo(a);
-	int b;
+	float abc;
 }
