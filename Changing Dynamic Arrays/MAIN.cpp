@@ -33,17 +33,31 @@ void CopyArray(int*& arr1, const int* const arr2, int const& size)
 //Функция добавляем еще один елемент массива с моим значением
 void PushBackArray(int*& arr, int& size, int value)
 {
-	size++;
-	int* NewArray = new int[size];
-	for (int i = 0; i < size - 1; i++)
+
+	int* NewArray = new int[size + 1];
+	for (int i = 0; i < size; i++)
 	{
 		NewArray[i] = arr[i];
 	}
-	NewArray[size-1] = value;
+
+	NewArray[size] = value;
+	size++;
 	delete[]arr;
 	arr = NewArray;
 }
 
+//Функция удаляет последний елемент динамического массива
+void PopBackArray(int*& arr, int& size) 
+{
+	int* NewArray = new int[size - 1];
+	for (int i = 0; i < size-1; i++)
+	{
+		NewArray[i] = arr[i];
+	}
+	delete[] arr;
+	arr = NewArray;
+	size--;
+}
 
 void main()
 {
@@ -54,7 +68,7 @@ void main()
 	int* arr = new int[size];
 	FillArray(arr, size);
 	ShowArray(arr, size);
-	PushBackArray(arr, size, 25);
+	PopBackArray(arr, size);
 
 
 	ShowArray(arr, size);
