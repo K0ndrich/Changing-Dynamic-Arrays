@@ -1,4 +1,5 @@
 #include<iostream>
+
 //Функция заполняет все ячейки динамического массива
 void FillArray(int* const arr, int& size)
 {
@@ -7,6 +8,7 @@ void FillArray(int* const arr, int& size)
 		arr[i] = rand() % 10;
 	}
 }
+
 //Функция ввыводит динамический массви на екран
 void ShowArray(const int* const arr, int& size)
 {
@@ -17,35 +19,43 @@ void ShowArray(const int* const arr, int& size)
 	std::cout << std::endl;
 }
 
-void CopyArray(int*& arr1, int *arr2, int const& size)
+//Функция копирует елементы одного динамического массива в другой
+void CopyArray(int*& arr1, const int* const arr2, int const& size)
 {
-
+	delete[]arr1;
+	arr1 = new int[size];
+	for (int i = 0; i < size; i++)
+	{
+		arr1[i] = arr2[i];
+	}
 }
+
+//Функция добавляем еще один елемент массива с моим значением
+void PushBackArray(int*& arr, int& size, int value)
+{
+	size++;
+	int* NewArray = new int[size];
+	for (int i = 0; i < size - 1; i++)
+	{
+		NewArray[i] = arr[i];
+	}
+	NewArray[size-1] = value;
+	delete[]arr;
+	arr = NewArray;
+}
+
+
 void main()
 {
 	setlocale(LC_ALL, "RU");
 	srand(time(NULL));
 
 	int size = 5;
-	int* arr1 = new int[size];
-	int* arr2 = new int[size];
+	int* arr = new int[size];
+	FillArray(arr, size);
+	ShowArray(arr, size);
+	PushBackArray(arr, size, 25);
 
-	FillArray(arr1, size);
-	FillArray(arr2, size);
-	ShowArray(arr1, size);
-	ShowArray(arr2, size);
-	std::cout << "==================================" << std::endl;
 
-	delete[]arr1;
-	arr1 = new int[size];
-
-	for (int i = 0; i < size; i++)
-	{
-		arr1[i] = arr2[i];
-	}
-	ShowArray(arr1, size);
-	ShowArray(arr2, size);
-	delete[]arr1;
-	delete[]arr2;
-
+	ShowArray(arr, size);
 }
