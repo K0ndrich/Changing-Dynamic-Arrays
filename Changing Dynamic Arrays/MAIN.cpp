@@ -47,10 +47,10 @@ void PushBackArray(int*& arr, int& size, int value)
 }
 
 //Функция добавляет один елемент со значение в начало динамического массива
-void PushFrontArray(int*& arr, int& size, int value) 
+void PushFrontArray(int*& arr, int& size, int value)
 {
-	int *NewArray = new int[size + 1];
-	for (size_t i = 0; i < size; i++)
+	int* NewArray = new int[size + 1];
+	for (int i = 0; i < size; i++)
 	{
 		NewArray[i + 1] = arr[i];
 	}
@@ -61,10 +61,10 @@ void PushFrontArray(int*& arr, int& size, int value)
 }
 
 //Функция удаляет последний елемент динамического массива
-void PopBackArray(int*& arr, int& size) 
+void PopBackArray(int*& arr, int& size)
 {
 	int* NewArray = new int[size - 1];
-	for (int i = 0; i < size-1; i++)
+	for (int i = 0; i < size - 1; i++)
 	{
 		NewArray[i] = arr[i];
 	}
@@ -73,18 +73,23 @@ void PopBackArray(int*& arr, int& size)
 	size--;
 }
 
+//Функция удаляет первый елемент динамического массива
+void PopFrontArray(int*& arr, int& size)
+{
+	int* NewArray = new int[size - 1];
+	for (int i = 0; i < size; i++)
+	{
+		NewArray[i] = arr[i + 1];
+	}
+	delete[]arr;
+	arr = NewArray;
+	size--;
+}
 
 void main()
 {
 	setlocale(LC_ALL, "RU");
 	srand(time(NULL));
 
-	int size = 5;
-	int* arr = new int[size];
-	FillArray(arr, size);
-	ShowArray(arr, size);
-	PushFrontArray(arr, size,777);
-
-
-	ShowArray(arr, size);
+	
 }
