@@ -5,4 +5,5 @@ void main()
 	int a;
 	std::cin >> a;
 	foo(a);
+	int b;
 }
